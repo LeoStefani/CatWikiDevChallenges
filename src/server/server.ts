@@ -163,7 +163,7 @@ class App {
     }
 }
 
-new App(3000).Start()
+new App(port).Start()
 
 export interface OrderBook {
     bids: {};

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Status</title>
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2 class="text-start ms-2">Orderbook tips for pair</h2>
+    <div class="row align-items-center">
+      <div class="col">
+        <select
+          class="form-select ms-2"
+          aria-label="Please choose pair: "
+          name="pair"
+          id="pair"
+          form="pairform"
+          aria-placeholder="Please choose a pair:"
+        >
+          <option value="BTCUSD">BTC-USD</option>
+          <option value="ETHUSD">ETH-USD</option>
+        </select>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-success m-0" id="pairSubmitter">
+          Send query
+        </button>
+        <button class="btn btn-warning m-0" id="pairStopper">
+          Stop
+        </button>
+      </div>
+    </div>
+    <!-- <div>
+      <div class="container mt-5" id="tipsContainer">
+        <div class="row g-2">
+          <div class="col-4">
+            <div class="p-3 border-none bg-none fs-2" id="pairName"></div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 border-none bg-none">
+              <div class="row align-items-center d-flex">
+                <div class="col border-none">Last price:</div>
+                <div class="col" id="lastPrice">retrieving..</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 border-none bg-none">
+                <div class="row align-items-center d-flex">
+                  <div class="col border-none">Daily change:</div>
+                  <div class="col" id="dailyChange">retrieving..</div>
+                </div>
+              </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 border-none bg-none">
+              <div class="row align-items-center d-flex">
+                <div class="col border-none">High:</div>
+                <div class="col" id="high">retrieving..</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 border-none bg-none">
+              <div class="row align-items-center d-flex">
+                <div class="col border-none">Low:</div>
+                <div class="col" id="low">retrieving..</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p id="bookItemsByPair"></p>
+    </div> -->
+    <!-- <div class="row align-items-center">
+      <div class="col">
+        <select
+          class="form-select ms-2"
+          aria-label="Please choose query: "
+          name="pairForEffectivePrice"
+          id="pairForEffectivePrice"
+          form="effectivePriceform"
+          aria-placeholder="Please choose a pair:"
+        >
+          <option value="BTCUSD">BTC-USD</option>
+          <option value="ETHUSD">ETH-USD</option>
+        </select>
+      </div>
+      <div class="col">
+        <select
+          class="form-select ms-2"
+          aria-label="Please choose operation type: "
+          name="operationTypeForEffectivePrice"
+          id="operationTypeForEffectivePrice"
+          form="effectivePriceform"
+          aria-placeholder="Please choose operation type: "
+        >
+          <option value="buy">BUY</option>
+          <option value="sell">SELL</option>
+        </select>
+      </div>
+      <div class="col">
+        <input type="number" name="amountToBeTraded" id="amountToBeTraded"> Amount:
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-success m-0" id="effectivePriceSubmitter">
+          Check Effective Price
+        </button>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <select
+          class="form-select ms-2"
+          aria-label="Please choose book: "
+          name="book"
+          id="book"
+          form="bookform"
+          aria-placeholder="Please choose a book:"
+        >
+          <option value="BTCUSD">BTC-USD</option>
+          <option value="ETHUSD">ETH-USD</option>
+        </select>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-success m-0" id="bookSubmitter">
+          Query book
+        </button>
+      </div>
+    </div> -->
+    <div class="row"> 
+    <div class="col-6">
+      <table id="bidsTable" style="width:100%">
+        <thead>
+          <tr>     
+            <th colspan="3">BIDS</th>
+          </tr>
+          <tr>
+              <th>Amount</th>
+              <th>Count</th>
+              <th>Price</th>   
+          </tr>
+        </thead>
+        <tbody id="bidsTableBody">
+  
+        </tbody>
+     </table>
+    </div>
+    <div class="col-6">
+      <table id="asksTable" style="width:100%">
+        <thead>
+          <tr>     
+            <th colspan="3">ASKS</th>
+          </tr>
+          <tr>
+              <th>Price</th>
+              <th>Count</th>
+              <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="asksTableBody">
+          
+        </tbody>
+     </table>
+    </div> 
+    </div> 
+
+
+    <script src="main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

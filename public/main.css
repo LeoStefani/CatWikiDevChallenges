@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+#tipsContainer {
+    display: none
+}
+
+table{
+    vertical-align: middle;
+    column-width: auto;
+    text-align: center;
+}
+
+td{
+    width: 100px;
+}
+
+td{
+    width: 100px;
+}
